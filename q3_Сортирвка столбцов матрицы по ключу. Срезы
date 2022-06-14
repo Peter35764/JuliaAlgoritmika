@@ -1,0 +1,9 @@
+function slice(A::Matrix,I::Vector{Int},J::Vector{Int})
+    B=Matrix{eltype(A)}(undef,length(I),length(J))
+    for i in 1:length(I)
+        for j in 1:length(J)
+            B[i,j]=A[I[i],J[j]]
+        end
+    end
+    return B
+end
