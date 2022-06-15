@@ -4,7 +4,7 @@ function bubblesort!(massive::AbstractArray)
     n = length(massive)
     for i in 1:n-1
         istranspose = false
-        for i in firstindex(massive):lastindex(massive) - i - 1
+        for i in firstindex(massive):lastindex(massive) - i
             if massive[i] > massive[i + 1]
                 massive[i], massive[i + 1] = massive[i + 1], massive[i]
                 istranspose = true
