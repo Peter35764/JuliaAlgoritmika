@@ -12,7 +12,7 @@ function simpleCountingSort(massive::AbstractArray)
         end
     end
 end
-
+#=
 function countSort(massive::AbstractArray) # от 0 до 100
     acc = zeros(Int64, length(massive))
 
@@ -29,3 +29,4 @@ function countSort(massive::AbstractArray) # от 0 до 100
         end
     end
 end
+=#
