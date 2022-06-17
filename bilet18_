@@ -1,3 +1,27 @@
+# 1
+function arcsin_(n,x)  
+    delta_x=x
+    sum=delta_x
+    k=1
+    while k<=n
+        delta_x=(delta_x*k*(k+1)*x*x)/(4*(k*k)*(2k+1))
+        sum+=delta_x
+        k+=1
+    end
+    return sum
+end
+
+using Plots
+
+x = 0:0.01:1
+plot(x, arcsin_.(10,x))
+# или
+using Plots
+x = 0:0.001:1
+plot(x, arcsin_.(20,x))
+
+# 2
+
 function eratosphen(n::Integer)
     is_prime = ones(Bool, n) 
     is_prime[1] = false # 1 — не является простым числом
