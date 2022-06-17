@@ -1,0 +1,21 @@
+# Такую модификацию "пузырьковой" сортировки назвают сортировкой "перемешиванием", или "шейкерной" сортировкой (Двунаправленная пузырьковая сортировка)
+
+function mixersort!(a)
+    i_beg = 1
+    i_end = length(a)
+    while i_beg < i_end
+        @inbounds for i in i_beg:i_end-1 # макрос @inbounds отменяет контроль выхода за пределы массива
+            if a[i] > a[i+1]
+                a[i], a[i+1] = a[i+1], a[i]
+            end
+        end
+        i_end -= 1
+        @inbounds for i in i_end:-1:i_beg+1 # i меняется в сторону уменьшения (в диапазоне шаг отрицательный)
+            if a[i-1] > a[i]
+                a[i-1], a[i] = a[i], a[i-1]
+            end
+        end
+        i_beg += 1
+    end
+    return a
+end
