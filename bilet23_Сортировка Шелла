@@ -1,0 +1,24 @@
+# Сортировка Шелла
+# Алгоритмическая сложность O(n^2)
+function shellSort(A)
+    inp=A
+    n=length(inp)
+    h = n / 2
+    h=round(h)
+    h=(Int64)(h)
+    while h>0
+        for i in h:n
+            t = inp[i]
+            j = i
+            while j > h && inp[j - h] > t 
+                inp[j] = inp[j - h]
+                j -= h
+            end
+            inp[j] = t
+        end
+        h = h / 2
+        h=round(h)
+        h=(Int64)(h)
+    end
+    return inp
+end
