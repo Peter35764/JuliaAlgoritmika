@@ -1,0 +1,15 @@
+#ВЫЧИСЛЕНИЕ СКО ЗА ОДИН ПРОХОД
+
+function SKO(A::Array)
+    n=length(A)
+    Sum1=Sum2=0
+    for i in 1:n
+        Sum1+=(A[i]*A[i])
+        Sum2+=A[i]
+    end
+    Sum=((Sum1)/(n)) - (Sum2/n)*(Sum2/n)
+    return sqrt(Sum)
+end
+
+A=[3,4,7,2,3,5,2,5]
+print(SKO(A))
