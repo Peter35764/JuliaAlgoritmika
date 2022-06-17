@@ -1,0 +1,26 @@
+#Вычисление k-й порядковой статистики
+
+function order_statistiks!(A::AbstractVector{T}, i::Integer)::T where T
+    function find(index_range)
+        left_range, right_range = part_sort!(A, index_range, A[rand(index_range)])
+        if i in left_range
+            return find(left_range)
+        elseif i in right_range
+            return find(right_range)
+        else
+            return A[i]
+        end
+    end
+    find(firstindex(A):lastindex(A))
+end
+
+# Медиана массива 
+
+function medianmassive(massive)
+    N = length(massive)
+    if N % 2 == 1
+        return order_statistiks!(massive, Int((N+1)/2))
+    else
+        return (order_statistiks!(massive, Int(N/2)) + order_statistiks!(massive, Int((N/2)+1)))/2
+    end
+end
