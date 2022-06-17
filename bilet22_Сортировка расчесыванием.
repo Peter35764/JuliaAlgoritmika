@@ -1,0 +1,13 @@
+#СОРТИРОВКА РАСЧЕСЫВАНИЕМ
+function combsort!(a; factor=1.2473309)
+    step = length(a)
+    while step >=1
+        for i in 1:length(a)-step
+            if a[i] > a[i+step]
+                a[i],a[i+step] = a[i+step],a[i]
+            end
+        end
+        step = Int(floor(step/factor))
+    end
+    bubblesort!(a)
+end
