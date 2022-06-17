@@ -1,0 +1,30 @@
+
+#быстрое возведение в степень без рекурсии
+
+function fast_step(x,y)
+    k, t, p = y, 1, x
+
+#ИНВАРИАНТ: p^k*t=a^n 
+    while k>0
+        if (k%2==0) # k - четное
+            k ÷= 2
+            p *= p # т.к. p^k = (p*p)^k*(t/2)
+        else
+            k -= 1
+            t *= p # т.к. p^k * t = p^(k-1)*(p*t)
+        end   
+    end 
+    return t
+end
+
+#БЫСТРОЕ ВОЗВЕДЕНИЕ В СТЕПЕНЬ С РЕКУРСИЕЙ
+
+function binpow(x,y)
+    if (y==0) 
+        return 1
+    elseif (y%2==0) 
+        return binpow(x*x,y/2)
+    else 
+        return x*binpow(x,y-1)
+    end
+end
