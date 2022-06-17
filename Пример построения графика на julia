@@ -1,0 +1,25 @@
+function besselj_(m,x)  
+    m_fact=1
+    for i in 2:m
+        m_fact*=i
+    end
+    sum_n=0
+    a_n=1/(m_fact)
+    k=1
+    while sum_n + a_n != sum_n
+        sum_n+=a_n
+        a_n=-a_n*((x*x/4))/(k*(k+m))
+        k+=1
+    end
+    return sum_n*((x/2)^m)
+end
+
+function grafik(m)
+    A=[]
+    for i in 0.0:0.01:1
+        push!(A,besselj_(m,i))
+    end
+    return A
+end
+x=0:0.1:20
+plot(x,besselj_.(2,x))  #m-коэфицент
