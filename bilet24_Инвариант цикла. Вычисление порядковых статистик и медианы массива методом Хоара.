@@ -1,0 +1,28 @@
+# БЫСТРАЯ СОРТИРОВКА ХОАРА
+
+function quick_sort!(A)
+    if isempty(A)
+        return A
+    end
+    N = length(A)
+    K, M = part_sort!(A, A[rand(1:N)]) 
+    return A
+end
+
+function part_sort!(A, b)
+    N = length(A)
+    K,L,M=0,0,N
+
+    @inbounds while L < M
+        if A[L+1] == b
+            L += 1
+        elseif  A[L+1] > b
+            A[L+1],A[M] = A[M], A[L+1]
+            M -= 1
+        else 
+            L +=1; K +=1
+            A[L], A[K] = A[K], A[L]
+        end
+    end
+    return K, M+1
+end
