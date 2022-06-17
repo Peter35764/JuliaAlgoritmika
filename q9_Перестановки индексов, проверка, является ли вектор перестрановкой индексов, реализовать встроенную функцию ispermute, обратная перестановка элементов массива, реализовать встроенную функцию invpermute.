@@ -1,0 +1,84 @@
+function _isperm(p)
+    n=length(p)
+    for i in 1:n
+        for j in i+1:n
+            if (p[i]==p[j] || p[i]>n || p[j]>n )
+                return false
+            end
+        end
+    end
+    return true
+end
+
+A=[10 9 8 7 6 5 4 3 2 1]
+B=[2 3 7 323 13 1231 12 2 2 2 13 31 3 3]
+
+_isperm(A)
+isperm(A)
+
+_isperm(B)
+isperm(B)
+
+function _invpermute!(A, p)
+    for i in p
+        if i > 0
+            A[i], A[p[i]] = A[p[i]], A[i]
+            p[i] = -p[i]
+        end
+    end
+    for i in eachindex(p)
+        p[i] = -p[i]
+    end
+    return A   
+end
+
+
+function _permute!(A, p) 
+    for i in eachindex(p)
+        if p[i] < 0
+            continue
+        end 
+        # i - начало очередной циклической перестановки индексов массива A            
+        buff = A[i]
+        j_prew, j = i, p[i] # - индекс элемента исходного массива, который требуется переместить на i-ю позицию                  
+        p[i] = -p[i]
+        while j != i # - пока циклическая перестановка индексов не "замкнулась"               
+            A[j_prew] = A[j]
+            j_prew, j = j, p[j]            
+            p[j_prew] = -p[j_prew]
+        end        
+        A[j_prew] = buff 
+        # перемещения элементов массива A по очередному циклу (по очередной циклической перестановке индексов) полностью завершены
+    end
+    for i in eachindex(p)
+        p[i] = -p[i]
+    end        
+    return A
+end
+
+function insertsort!(A)
+    n=length(A)
+    for k in eachindex(A) #2:n
+        # часть массива A[1:k-1] уже отсортирована
+        op_insert!(A,k)
+    end
+    return A
+end
+op_insert!(A,k) =
+    while k>1 && A[k-1] > A[k]
+        A[k-1], A[k] = A[k], A[k-1]
+        k -= 1
+    end
+#Короткий массив
+A=[]
+A=collect((10:-1:1))
+CPUtic()
+insertsort!(A)
+CPUtoc()
+
+#большой массив
+
+B=collect((10000:-1:1))
+CPUtic()
+insertsort!(B)
+CPUtoc()
