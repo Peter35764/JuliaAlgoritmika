@@ -1,3 +1,16 @@
+function sinus(x, ε)
+    xx = x^2
+    a = x
+    k = 1
+    s = typeof(x)(0) # - преобразование к 0 нужного типа, что обеспечит стабильность типа переменной s
+    while abs(a) > ε
+        s += a
+        a = -a*xx/2k/(2k+1)
+        k += 1
+    end
+    return s
+end
+
 function sinus(x,epsilon)
     xx=x^2
     a=x
@@ -10,6 +23,7 @@ function sinus(x,epsilon)
     end
     return s
 end
+
 function sinus2(x)
     sum_n=0
     a_n=x
