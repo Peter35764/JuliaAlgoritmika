@@ -1,0 +1,32 @@
+"""Вычисляет cos(x) с помощью ряда Тейлора"""
+function cos_(x)
+    xx=x^2
+    a = 1
+    m = 1
+    s = 0 
+    
+    while s + a != s
+        s += a
+        a = -a*xx / m / (m+1)
+        m += 2
+    end
+    
+    return s
+end
+
+
+"""Возвращает значение n-ой частичной суммы ряда для cos(x) в точке х"""
+function part_sum(n, x)
+    xx = x^2
+    a = 1
+    m = 1
+    s = 0 
+    
+    while (m-1)/2 < n
+        s += a
+        a = -a*xx / m / (m+1)
+        m += 2
+    end
+    
+    return s
+end
