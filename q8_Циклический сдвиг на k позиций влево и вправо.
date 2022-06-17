@@ -1,0 +1,13 @@
+function sdvig_right!(A)
+    Q=A
+    n=length(A)
+    for i in n-1:-1:1
+        Q[i+1]=Q[i]
+    end
+    Q[1]=0
+    return Q
+end
+
+A=randn(1,10)
+
+sdvig_right!(A)
