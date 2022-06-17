@@ -1,0 +1,15 @@
+function ln_x(x)
+    sum_n = 0
+    a_n = x - 1
+    k = 1
+    while sum_n + a_n != sum_n
+        sum_n += a_n/k
+        a_n = -a_n*(x - 1)
+        k += 1
+    end
+    #println(k)
+    return sum_n
+        #=
+        (-1)^(k + 1)*() 
+    =#
+end
