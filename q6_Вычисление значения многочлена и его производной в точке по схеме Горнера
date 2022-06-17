@@ -1,0 +1,29 @@
+# Значения многочлена по сх Горнера
+function evalpoly_(x,A)
+    Q = first(A) # - это есть a_0
+    for a in @view A[2:end]
+        Q=Q*x+a
+    end
+    return Q
+end
+
+# Производная по сх Горнера
+
+function rx_mnogochlen(x,p)
+    return -(eval_poly(x,p))/(eval_poly(x,proizvodn(p)))
+end
+function eval_poly(x,A) # значение многочлена в точке 
+    Q = first(A) # - это есть a_0
+    for a in @view A[2:end]
+        Q=Q*x+a
+    end
+    return Q
+end
+
+function proizvodn(p)
+    h=[]
+    for i in 1:length(p)-1
+        push!(h,p[i]*(length(p)-i))
+    end
+    return h
+end
