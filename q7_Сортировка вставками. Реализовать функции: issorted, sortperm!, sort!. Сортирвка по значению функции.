@@ -1,0 +1,16 @@
+# Сортировка числового массива вставками
+# Сложность алгортма сортировки вставками оценивается как O(n^2).
+function insertsort!(A)
+    n=length(A)
+    for k in eachindex(A) #2:n
+        # часть массива A[1:k-1] уже отсортирована
+        op_insert!(A,k)
+    end
+    return A
+end
+
+op_insert!(A,k) =
+    while k>1 && A[k-1] > A[k]
+        A[k-1], A[k] = A[k], A[k-1]
+        k -= 1
+    end
