@@ -28,3 +28,25 @@ function iissorted(massive::AbstractArray)
     end
     return true
 end
+
+# тут еще баблсорт, который возвращает перестановку, whatever
+
+function bubblesortperm!(a)
+n = length(a)
+indexes = collect(1:n)
+for k in 1:n-1
+is_sorted = true
+for i in 1:n-k
+if a[i] > a[i+1]
+a[i], a[i+1] = a[i+1], a[i]
+indexes[i], indexes[i+1] = indexes[i+1], indexes[i]
+is_sorted = false
+end
+end
+if is_sorted
+break
+end
+end
+return indexes
+end
+bubblesortperm(a) = bubblesortperm!(deepcopy(a))
